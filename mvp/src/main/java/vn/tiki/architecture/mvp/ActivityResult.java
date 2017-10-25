@@ -7,15 +7,9 @@ import android.support.annotation.Nullable;
 
 public final class ActivityResult {
 
+  @Nullable private final Intent intent;
   private final int requestCode;
   private final int resultCode;
-  @Nullable private final Intent intent;
-
-  private ActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
-    this.requestCode = requestCode;
-    this.resultCode = resultCode;
-    this.intent = intent;
-  }
 
   public static @NonNull ActivityResult create(
       final int requestCode,
@@ -24,12 +18,10 @@ public final class ActivityResult {
     return new ActivityResult(requestCode, resultCode, intent);
   }
 
-  public int requestCode() {
-    return requestCode;
-  }
-
-  public int resultCode() {
-    return resultCode;
+  private ActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
+    this.requestCode = requestCode;
+    this.resultCode = resultCode;
+    this.intent = intent;
   }
 
   @Nullable public Intent intent() {
@@ -46,5 +38,17 @@ public final class ActivityResult {
 
   public boolean isRequestCode(final int v) {
     return requestCode == v;
+  }
+
+  public boolean isResultCode(final int v) {
+    return resultCode == v;
+  }
+
+  public int requestCode() {
+    return requestCode;
+  }
+
+  public int resultCode() {
+    return resultCode;
   }
 }

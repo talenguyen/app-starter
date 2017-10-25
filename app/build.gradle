@@ -1,0 +1,156 @@
+import vn.tiki.Deps
+
+buildscript {
+  repositories {
+    maven { url 'https://maven.fabric.io/public' }
+  }
+
+  dependencies {
+    classpath 'io.fabric.tools:gradle:1.+'
+  }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'io.fabric'
+
+repositories {
+  maven { url 'https://maven.fabric.io/public' }
+  mavenCentral()
+}
+
+apply plugin: 'jacoco'
+
+android {
+  compileSdkVersion Deps.Version.compileSdk
+
+  defaultConfig {
+    applicationId "vn.tale.sayit"
+    minSdkVersion Deps.Version.minSdk
+    targetSdkVersion Deps.Version.compileSdk
+    versionCode 1
+    versionName "1.0"
+    vectorDrawables.useSupportLibrary true
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+
+  buildTypes {
+    debug {
+      ext.enableCrashlytics = false
+    }
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  testOptions {
+    unitTests {
+      includeAndroidResources = true
+      all {
+        jacoco {
+          includeNoLocationClasses = true
+        }
+      }
+    }
+  }
+
+  flavorDimensions "default"
+  productFlavors {
+    dev {
+      applicationIdSuffix ".dev"
+      dimension "default"
+      resValue "string", "app_name", "Say!t - Dev"
+    }
+    prod {
+      dimension "default"
+      resValue "string", "app_name", "Say!t"
+    }
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation Deps.kotlin
+  implementation Deps.AndroidSupport.appCompat
+  implementation Deps.AndroidSupport.recyclerview
+  implementation Deps.AndroidSupport.design
+  implementation Deps.AndroidSupport.constraint
+  implementation Deps.Dagger.runtime
+  implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+  kapt Deps.Dagger.compiler
+  implementation Deps.ButterKnife.runtime
+  kapt Deps.ButterKnife.compiler
+  implementation Deps.rxJava
+  implementation Deps.rxAndroid
+  implementation project(':daggers')
+  implementation project(':mvp')
+  implementation project(':intents')
+  kapt project(':intents-compiler')
+  implementation project(':collectionview')
+  //  implementation deps.tiki.daggers
+  //  implementation deps.tiki.mvp
+  //  implementation deps.tiki.intents.intents
+  //  kapt deps.tiki.intents.compiler
+  implementation Deps.gson
+  implementation Deps.Http.retrofit
+  implementation Deps.Http.gsonConverter
+  implementation Deps.Http.rxJavaAdapter
+  implementation Deps.Http.okhttp
+  implementation Deps.Http.logging
+  compileOnly Deps.AutoValue.annotations
+  compileOnly Deps.AutoValue.gsonAnnotations
+  kapt Deps.AutoValue.autoValue
+  kapt Deps.AutoValue.gson
+  kapt Deps.AutoValue.parcel
+  implementation Deps.noadapter
+  implementation Deps.Glide.runtime
+  kapt Deps.Glide.compiler
+  kapt Deps.javapoet
+  implementation Deps.timber
+  implementation(Deps.crashlytics) {
+    transitive = true
+  }
+  implementation Deps.ixJava
+  implementation Deps.Room.runtime
+  kapt Deps.Room.compiler
+  implementation Deps.Store.store
+  implementation Deps.Store.fileSystem
+  implementation Deps.Store.middleware
+  implementation Deps.ParcelParcel.runtime
+  implementation Deps.ParcelParcel.kotlin
+  kapt Deps.ParcelParcel.compiler
+
+  debugImplementation Deps.LeakCanary.core
+  releaseImplementation Deps.LeakCanary.noOp
+  implementation Deps.Stetho.core
+  implementation Deps.Stetho.okhttp
+  implementation Deps.rxbinding
+
+  testImplementation Deps.Test.junit
+  testImplementation Deps.Test.mockito
+  testImplementation Deps.Test.truth
+  testImplementation Deps.Test.robolectric
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+
+  reports {
+    xml.enabled = true
+    html.enabled = true
+  }
+
+  def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+  def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+  def mainSrc = "${project.projectDir}/src/main/java"
+
+  sourceDirectories = files([mainSrc])
+  classDirectories = files([debugTree])
+  executionData = files("${buildDir}/jacoco/testDebugUnitTest.exec")
+}

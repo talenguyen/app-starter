@@ -125,4 +125,5 @@ public interface Deps {
   String noadapter = "vn.tiki.noadapter2:noadapter:2.0.2";
   String javapoet = "com.squareup:javapoet:1.9.0";
   String gson = "com.google.code.gson:gson:2.8.0";
+  String rxbinding = "com.jakewharton.rxbinding2:rxbinding:2.0.0";
 }

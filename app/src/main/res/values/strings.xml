@@ -1,0 +1,7 @@
+<resources>
+  <string name="msg_you_are_offline">You are offline.</string>
+
+  <!--CollectionView-->
+  <string name="clv_error_occurred">Error occurred.</string>
+  <string name="home_hint">Enter word, phrase or sentence</string>
+</resources>
