@@ -5,6 +5,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
+import com.jakewharton.processphoenix.ProcessPhoenix
 
 inline fun <reified T : Activity> Context.intentOf(): Intent {
   return Intent(this, T::class.java)
@@ -29,4 +30,8 @@ fun Context.isConnected(): Boolean {
 
   val activeNetwork = cm.activeNetworkInfo
   return activeNetwork != null && activeNetwork.isConnectedOrConnecting
+}
+
+fun Context.restart() {
+  ProcessPhoenix.triggerRebirth(this)
 }

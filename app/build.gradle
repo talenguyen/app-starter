@@ -132,6 +132,7 @@ dependencies {
   implementation Deps.Stetho.core
   implementation Deps.Stetho.okhttp
   implementation Deps.rxbinding
+  implementation Deps.processPhoenix
 
   testImplementation Deps.Test.junit
   testImplementation Deps.Test.mockito

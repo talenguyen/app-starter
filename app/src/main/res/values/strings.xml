@@ -4,4 +4,6 @@
   <!--CollectionView-->
   <string name="clv_error_occurred">Error occurred.</string>
   <string name="home_hint">Enter word, phrase or sentence</string>
+  <string name="home_msg_init_error">Can not connect to Text To Speed service.</string>
+  <string name="retry">Retry</string>
 </resources>

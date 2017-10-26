@@ -21,8 +21,6 @@ interface HomeView : View {
 
   fun makeTts(onInitListener: OnInitListener): TextToSpeech
 
-  fun sayIt(text: CharSequence)
-
   fun onQueryInputs(): Observable<CharSequence>
 
   fun onClearClicks(): Observable<Any>

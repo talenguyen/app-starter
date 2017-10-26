@@ -6,6 +6,7 @@ import android.util.Log
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
 import com.facebook.stetho.Stetho
+import com.jakewharton.processphoenix.ProcessPhoenix
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 import io.fabric.sdk.android.Fabric
@@ -26,7 +27,9 @@ open class SampleApp : Application(), AppInjector {
 
   override fun onCreate() {
     super.onCreate()
-
+    if (ProcessPhoenix.isPhoenixProcess(this)) {
+      return
+    }
     configureDagger()
     configureFabric()
     configureTimber()

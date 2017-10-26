@@ -41,7 +41,7 @@ public interface Deps {
   interface Android {
 
     String runtime = "com.google.android:android:4.1.1.4";
-    String gradlePlugin = "com.android.tools.build:gradle:3.0.0-rc1";
+    String gradlePlugin = "com.android.tools.build:gradle:3.0.0";
   }
 
   interface Auto {
@@ -126,4 +126,5 @@ public interface Deps {
   String javapoet = "com.squareup:javapoet:1.9.0";
   String gson = "com.google.code.gson:gson:2.8.0";
   String rxbinding = "com.jakewharton.rxbinding2:rxbinding:2.0.0";
+  String processPhoenix = "com.jakewharton:process-phoenix:2.0.0";
 }
