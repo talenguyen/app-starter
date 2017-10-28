@@ -15,6 +15,13 @@ public interface Deps {
 
   }
 
+  interface Tiki {
+
+    String version = "master-SNAPSHOT";
+    String daggers = "com.github.tikivn.android-template:daggers:" + version;
+    String mvp = "com.github.tikivn.android-template:mvp:" + version;
+  }
+
   interface Dagger {
 
     String runtime = "com.google.dagger:dagger:" + Version.dagger;

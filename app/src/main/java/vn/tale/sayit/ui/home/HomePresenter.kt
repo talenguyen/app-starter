@@ -27,7 +27,7 @@ class HomePresenter @Inject constructor() : RxBasePresenter<HomeView>(), Activit
 
   override fun onActivityResult(activityResult: ActivityResult) {
     if (activityResult.isRequestCode(RC_CHECK_TTS_DATA)) {
-      if (activityResult.isResultCode(TextToSpeech.Engine.CHECK_VOICE_DATA_PASS)) {
+      if (activityResult.resultCode() == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
         tts = viewOrThrow.makeTts(OnInitListener { status ->
           if (status == TextToSpeech.ERROR) {
             viewOrThrow.showTtsInitError()
@@ -36,7 +36,7 @@ class HomePresenter @Inject constructor() : RxBasePresenter<HomeView>(), Activit
           }
         })
       } else {
-        // missing data, install it }
+        // missing data, install it
         viewOrThrow.startTssDataInstall()
       }
     }

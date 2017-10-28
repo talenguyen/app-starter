@@ -83,21 +83,13 @@ dependencies {
   implementation Deps.AndroidSupport.design
   implementation Deps.AndroidSupport.constraint
   implementation Deps.Dagger.runtime
-  implementation 'com.android.support.constraint:constraint-layout:1.0.2'
   kapt Deps.Dagger.compiler
   implementation Deps.ButterKnife.runtime
   kapt Deps.ButterKnife.compiler
   implementation Deps.rxJava
   implementation Deps.rxAndroid
-  implementation project(':daggers')
-  implementation project(':mvp')
-  implementation project(':intents')
-  kapt project(':intents-compiler')
-  implementation project(':collectionview')
-  //  implementation deps.tiki.daggers
-  //  implementation deps.tiki.mvp
-  //  implementation deps.tiki.intents.intents
-  //  kapt deps.tiki.intents.compiler
+  implementation Deps.Tiki.daggers
+  implementation Deps.Tiki.mvp
   implementation Deps.gson
   implementation Deps.Http.retrofit
   implementation Deps.Http.gsonConverter
