@@ -1,14 +1,14 @@
 package vn.tale.sayit.di
 
-import android.content.Context
+import android.app.Activity
 import dagger.Module
 import dagger.Provides
 
 @Module
-class ActivityModule(private val context: Context) {
+class ActivityModule(private val activity: Activity) {
 
-  @ActivityScope
-  @Provides internal fun provideContext(): Context {
-    return context
+  @LifecycleScope
+  @Provides internal fun provideActivity(): Activity {
+    return activity
   }
 }

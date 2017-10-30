@@ -123,6 +123,15 @@ public interface Deps {
     String okhttp = "com.facebook.stetho:stetho-okhttp3:1.5.0";
   }
 
+  interface Lifecycle {
+
+    String version = "1.0.0-rc1";
+    String runtime = "android.arch.lifecycle:runtime:" + version;
+    String extensions = "android.arch.lifecycle:extensions:" + version;
+    String java8 = "android.arch.lifecycle:common-java8:" + version;
+    String compiler = "android.arch.lifecycle:compiler:" + version;
+  }
+
   String kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jre7:" + Version.kotlin;
   String rxJava = "io.reactivex.rxjava2:rxjava:2.1.2";
   String rxAndroid = "io.reactivex.rxjava2:rxandroid:2.0.1";

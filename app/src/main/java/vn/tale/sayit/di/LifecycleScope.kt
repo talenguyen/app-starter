@@ -11,4 +11,4 @@ import kotlin.annotation.AnnotationRetention.RUNTIME
 @Scope
 @MustBeDocumented
 @kotlin.annotation.Retention(RUNTIME)
-annotation class ActivityScope
+annotation class LifecycleScope

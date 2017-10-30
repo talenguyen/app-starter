@@ -82,28 +82,42 @@ dependencies {
   implementation Deps.AndroidSupport.recyclerview
   implementation Deps.AndroidSupport.design
   implementation Deps.AndroidSupport.constraint
+
+  implementation Deps.Lifecycle.runtime
+  implementation Deps.Lifecycle.extensions
+  implementation Deps.Lifecycle.java8
+  kapt Deps.Lifecycle.compiler
+
   implementation Deps.Dagger.runtime
   kapt Deps.Dagger.compiler
+  implementation Deps.Tiki.daggers
+
   implementation Deps.ButterKnife.runtime
   kapt Deps.ButterKnife.compiler
+
   implementation Deps.rxJava
   implementation Deps.rxAndroid
-  implementation Deps.Tiki.daggers
+
   implementation Deps.Tiki.mvp
   implementation Deps.gson
+
   implementation Deps.Http.retrofit
   implementation Deps.Http.gsonConverter
   implementation Deps.Http.rxJavaAdapter
   implementation Deps.Http.okhttp
   implementation Deps.Http.logging
+
   compileOnly Deps.AutoValue.annotations
   compileOnly Deps.AutoValue.gsonAnnotations
   kapt Deps.AutoValue.autoValue
   kapt Deps.AutoValue.gson
   kapt Deps.AutoValue.parcel
+
   implementation Deps.noadapter
+
   implementation Deps.Glide.runtime
   kapt Deps.Glide.compiler
+
   kapt Deps.javapoet
   implementation Deps.timber
   implementation(Deps.crashlytics) {

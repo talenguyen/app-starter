@@ -3,7 +3,7 @@ package vn.tale.sayit.di
 import dagger.Subcomponent
 import vn.tale.sayit.ui.home.HomeActivity
 
-@ActivityScope
+@LifecycleScope
 @Subcomponent(modules = arrayOf(ActivityModule::class))
 interface ActivityComponent {
 
